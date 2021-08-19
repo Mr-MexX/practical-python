@@ -1,12 +1,15 @@
 # pcost.py
 #
-# Exercise 1.32
+# Exercise 1.33
+import sys
+
 def portfolio_cost(filename):
     '''
     Computes the total cost (shares*price) of a portfolio file
     '''
-    total_cost = 0.0
     import csv
+    total_cost = 0.0
+
     f = open(filename)
     rows = csv.reader(f)
     headers = next(rows) # optional print
@@ -19,6 +22,11 @@ def portfolio_cost(filename):
             print("Couldn't parse", row)
     return total_cost
 
-cost = portfolio_cost('Data/missing.csv')
+if len(sys.argv) == 2:
+    filename = sys.argv[1]
+else:
+    filename = 'Data/portfolio.csv'
+
+cost = portfolio_cost(filename)
 print('Total cost', cost)
 
